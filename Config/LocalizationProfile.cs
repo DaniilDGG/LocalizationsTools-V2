@@ -95,7 +95,7 @@ namespace Core.Scripts.Localizations.Config
                 
                 if (!Directory.Exists(folder)) Directory.CreateDirectory(folder);
                 
-                using var fs = File.Create(Path.Combine(path, name));
+                using var fs = File.Create(path);
                 
                 var info = new UTF8Encoding(true).GetBytes(text);
                 fs.Write(info, 0, info.Length);
