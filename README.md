@@ -3,6 +3,11 @@
 
 This is a localization tool created for the Unity engine.
 
+# Install via UPM Package
+
+First, install UniTask: https://github.com/Cysharp/UniTask?ysclid=lulo5ve1dr734166736#upm-package
+After that, install via git URL this package: https://github.com/DaniilDGG/LocalizationsTools-V2.git
+
 # How to use
 
 To get started with this localization tool, you must set up the languages using the Localization/Language settings window.

@@ -10,7 +10,7 @@
   "licensesUrl": "",
   "dependencies": {
     "com.unity.textmeshpro": "3.0.6",
-    "com.cysharp.unitask" : "https://github.com/Cysharp/UniTask.git#2.5.4"
+    "com.cysharp.unitask" : "2.5.4"
   },
   "keywords": [
     "localization",
