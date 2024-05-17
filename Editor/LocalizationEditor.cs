@@ -72,7 +72,12 @@ namespace Core.Scripts.Localizations.Editor
 
         public static void Init()
         {
-            if (!_localizationProfile) _localizationProfile = Resources.LoadAll<LocalizationProfile>("")[0];
+            if (!_localizationProfile)
+            {
+                var profiles = Resources.LoadAll<LocalizationProfile>("");
+                
+                if (profiles.Length > 0) _localizationProfile = profiles[0];
+            }
 
             if (!_localizationProfile)
             {
