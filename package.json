@@ -9,7 +9,8 @@
   "changelogUrl": "",
   "licensesUrl": "",
   "dependencies": {
-    "com.unity.textmeshpro": "3.0.6"
+    "com.unity.textmeshpro": "3.0.6",
+    "com.cysharp.unitask" : "2.5.4"
   },
   "keywords": [
     "localization",
