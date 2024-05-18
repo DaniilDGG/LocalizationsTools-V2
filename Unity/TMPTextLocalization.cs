@@ -8,7 +8,7 @@ using UnityEngine;
 namespace Core.Scripts.Localizations.Unity
 {
     [RequireComponent(typeof(LocalizationInfo))]
-    public class TMPTextLocalization : MonoBehaviour
+    public sealed class TMPTextLocalization : MonoBehaviour
     {
         #region Fields
 

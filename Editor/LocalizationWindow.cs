@@ -98,7 +98,7 @@ namespace Core.Scripts.Localizations.Editor
             Root.Remove(_visualElementCode);
             Root.Add(_visualElementLocalizations);
 
-            LocalizationData localizationData = LocalizationController.GetLocalization(_code);
+            var localizationData = LocalizationController.GetLocalization(_code);
 
             if (localizationData == null)
             {

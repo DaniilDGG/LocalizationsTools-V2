@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 namespace Core.Scripts.Localizations.Unity.Base
 {
-    public class LocalizationInfo : MonoBehaviour
+    public sealed class LocalizationInfo : MonoBehaviour
     {
         #region Fields
 

@@ -16,7 +16,7 @@ namespace Core.Scripts.Localizations.Editor
         private const int WidthColumn = 64 * 256;
         
         [MenuItem("Localization/Export to XLSX")]
-        public static void WriteLocalizationInFile()
+        private static void WriteLocalizationInFile()
         {
             LocalizationEditor.Init();
             var languages = new List<Language>(LocalizationController.Languages);

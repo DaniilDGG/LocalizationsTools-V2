@@ -17,7 +17,7 @@ namespace Core.Scripts.Localizations.Editor
         private static IWorkbook _workbook;
 
         [MenuItem("Localization/Import XLSX")]
-        public static void ReadLocalizationInFile()
+        private static void ReadLocalizationInFile()
         {
             LocalizationEditor.Init();
             

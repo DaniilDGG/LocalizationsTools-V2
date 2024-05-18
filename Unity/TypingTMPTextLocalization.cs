@@ -10,7 +10,7 @@ using UnityEngine;
 namespace Core.Scripts.Localizations.Unity
 {
     [RequireComponent(typeof(LocalizationInfo))]
-    public class TypingTMPTextLocalization : MonoBehaviour
+    public sealed class TypingTMPTextLocalization : MonoBehaviour
     {
         #region Fields
 

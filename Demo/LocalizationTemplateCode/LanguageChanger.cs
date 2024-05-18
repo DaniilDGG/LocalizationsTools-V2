@@ -1,9 +1,8 @@
 using System.Collections.Generic;
-using Core.Scripts.Localizations;
 using TMPro;
 using UnityEngine;
 
-namespace Core.Scripts.LocalizationTemplateCode
+namespace Core.Scripts.Localizations.Demo.LocalizationTemplateCode
 {
     public class LanguageChanger : MonoBehaviour
     {

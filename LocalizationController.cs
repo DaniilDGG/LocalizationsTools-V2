@@ -2,6 +2,7 @@
 //Licensed under the Apache License, Version 2.0
 
 using System;
+using Core.Scripts.Localizations.Config;
 using UnityEngine;
 
 namespace Core.Scripts.Localizations
@@ -25,8 +26,22 @@ namespace Core.Scripts.Localizations
         public static event Action<Language> OnLanguageSwitch;
         
         #endregion
+        
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+        private static void RuntimeOnLoad()
+        {
+            var profile = GetProfile();
 
-        public static void InitLocalization(Language[] languages, LocalizationData[] localizations)
+            if (!profile)
+            {
+                Debug.LogError("Profile is null!");
+                return;
+            }
+            
+            profile.InitLocalizationSystem();
+        }
+        
+        internal static void InitLocalization(Language[] languages, LocalizationData[] localizations)
         {
             _languages = languages;
             _localizations = localizations;
@@ -98,6 +113,13 @@ namespace Core.Scripts.Localizations
             }
 
             return null;
+        }
+
+        public static LocalizationProfile GetProfile()
+        {
+            var profiles = Resources.LoadAll<LocalizationProfile>("");
+                
+            return profiles.Length > 0 ? profiles[0] : null;
         }
     }
 }

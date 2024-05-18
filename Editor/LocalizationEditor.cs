@@ -72,30 +72,28 @@ namespace Core.Scripts.Localizations.Editor
 
         public static void Init()
         {
-            if (!_localizationProfile)
-            {
-                var profiles = Resources.LoadAll<LocalizationProfile>("");
-                
-                if (profiles.Length > 0) _localizationProfile = profiles[0];
-            }
+            const string assetPath = "Assets/Resources/LocalizationProfile.asset";
 
             if (!_localizationProfile)
             {
-                _localizationProfile = ScriptableObject.CreateInstance<LocalizationProfile>();
+                _localizationProfile = LocalizationController.GetProfile();
                 
-                var assetPath = "Assets/Resources/LocalizationProfile.asset";
-
-                var folder = System.IO.Path.GetDirectoryName(assetPath);
+                if (!_localizationProfile)
+                {
+                    _localizationProfile = ScriptableObject.CreateInstance<LocalizationProfile>();
+                    
+                    var folder = System.IO.Path.GetDirectoryName(assetPath);
                 
-                if (!System.IO.Directory.Exists(folder)) System.IO.Directory.CreateDirectory(folder);
+                    if (!System.IO.Directory.Exists(folder)) System.IO.Directory.CreateDirectory(folder);
 
-                AssetDatabase.CreateAsset(_localizationProfile, assetPath);
-                AssetDatabase.SaveAssets();
+                    AssetDatabase.CreateAsset(_localizationProfile, assetPath);
+                    AssetDatabase.SaveAssets();
 
-                EditorUtility.FocusProjectWindow();
-                Selection.activeObject = _localizationProfile;
+                    EditorUtility.FocusProjectWindow();
+                    Selection.activeObject = _localizationProfile;
+                }
             }
-            
+
             _localizationProfile.InitLocalizationSystem();
         }
 
