@@ -1,9 +1,11 @@
 using System;
+using Core.Scripts.Localizations.Unity.Base;
 using UnityEngine;
 
 namespace Core.Scripts.Localizations.Unity
 {
-    public class ReplacedTMPTextLocalization : AbstractTextLocalization
+    [RequireComponent(typeof(LocalizationInfo))]
+    public sealed class ReplacedTMPTextLocalization : AbstractTextLocalization
     {
         #region Fields
 
