@@ -18,7 +18,7 @@ namespace Core.Scripts.Localizations.Unity
 
         private void Awake()
         {
-            _localizationInfo = gameObject.GetComponent<LocalizationInfo>();
+            BaseInit();
             _localizationInfo.OnSwitchLanguage += SetText;
             
             SetText(_localizationInfo.GetLocalization());
@@ -32,6 +32,8 @@ namespace Core.Scripts.Localizations.Unity
         }
 
         #endregion
+
+        private void BaseInit() => _localizationInfo = gameObject.GetComponent<LocalizationInfo>();
         
         private void SetText(string original)
         {
@@ -43,6 +45,11 @@ namespace Core.Scripts.Localizations.Unity
         protected abstract string GetText(string original);
 
         [ContextMenu("DEBUG: Set text for current language")]
-        private void DebugSetCurrentText() => SetText(_localizationInfo.GetLocalizationDebug());
+        private void DebugSetCurrentText()
+        {
+            BaseInit();
+            
+            SetText(_localizationInfo.GetLocalizationDebug());
+        }
     }
 }
