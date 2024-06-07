@@ -51,6 +51,18 @@ namespace Core.Scripts.Localizations.Unity.Base
         
         /// <summary>
         /// Get localization, by localization code, which is stored in LocalizationInfo.
+        /// Receives data from the controller each time. Only necessary in Editor Mode.
+        /// </summary>
+        /// <returns>Localization for the current language.</returns>
+        public string GetLocalizationDebug()
+        {
+            if (_localizationCode != CustomCode) _localizationData = LocalizationController.GetLocalization(_localizationCode);
+
+            return GetLocalization();
+        }
+        
+        /// <summary>
+        /// Get localization, by localization code, which is stored in LocalizationInfo.
         /// </summary>
         /// <returns>Localization for the current language.</returns>
         public string GetLocalization()

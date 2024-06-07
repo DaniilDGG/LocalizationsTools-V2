@@ -32,7 +32,7 @@ namespace Core.Scripts.Localizations.Unity
         }
 
         #endregion
-
+        
         private void SetText(string original)
         {
             var text = GetText(original);
@@ -41,5 +41,8 @@ namespace Core.Scripts.Localizations.Unity
         }
 
         protected abstract string GetText(string original);
+
+        [ContextMenu("DEBUG: Set text for current language")]
+        private void DebugSetCurrentText() => SetText(_localizationInfo.GetLocalizationDebug());
     }
 }
