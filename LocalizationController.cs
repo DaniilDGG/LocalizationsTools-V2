@@ -3,7 +3,6 @@
 
 using System;
 using Core.Scripts.Localizations.Config;
-using UnityEditor;
 using UnityEngine;
 
 namespace Core.Scripts.Localizations
@@ -27,11 +26,6 @@ namespace Core.Scripts.Localizations
         public static event Action<Language> OnLanguageSwitch;
         
         #endregion
-        
-#if UNITY_EDITOR
-        [InitializeOnLoadMethod]
-        private static void EditorOnLoad() => RuntimeOnLoad();
-#endif
         
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         private static void RuntimeOnLoad()
