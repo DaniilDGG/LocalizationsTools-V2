@@ -47,6 +47,8 @@ namespace LocalizationsTools_V2.Unity.Dropdown
 #if UNITY_EDITOR
         private void OnValidate()
         {
+            if (!_dropdown) _dropdown = GetComponent<TMP_Dropdown>();
+            
             if (Application.isPlaying || !_dropdown) return;
             
             _dropdown.ClearOptions();
