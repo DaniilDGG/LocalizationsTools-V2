@@ -192,4 +192,24 @@ namespace Core.Scripts.Localizations
             return a;
         }
     }
+
+    [Serializable]
+    public struct LocalizationString
+    {
+        #region Fields
+
+        [SerializeField] private string _value;
+
+        #region Propeties
+
+        public string Value => _value;
+
+        #endregion
+        
+        #endregion
+        
+        public LocalizationString(string value) => _value = value;
+        public static implicit operator string(LocalizationString d) => d._value;
+        public static implicit operator LocalizationString(string d) => new LocalizationString(d);
+    }
 }

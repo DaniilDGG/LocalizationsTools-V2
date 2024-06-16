@@ -2,7 +2,7 @@ using Core.Scripts.Localizations.Unity.Base;
 using UnityEditor;
 using UnityEngine;
 
-namespace Core.Scripts.Localizations.Editor
+namespace LocalizationsTools_V2.Editor
 {
     [CustomEditor(typeof(LocalizationInfo))]
     public class LocalizationInfoGUI : UnityEditor.Editor

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Core.Scripts.Localizations;
 using TMPro;
@@ -11,7 +10,7 @@ namespace LocalizationsTools_V2.Unity.Dropdown
         #region Fields
 
         [SerializeField] private TMP_Dropdown _dropdown;
-        [SerializeField] private List<string> _items;
+        [SerializeField] private List<LocalizationString> _items = new();
         
         private LocalizationData[] _localizationDates;
         private Language _currentLanguage;
@@ -23,7 +22,12 @@ namespace LocalizationsTools_V2.Unity.Dropdown
         /// <summary>
         /// Using ADD()/REMOVE() will not affect the dropdown. To change the items you need to use SetItems() method.
         /// </summary>
-        public List<string> Items => _items;
+        public List<string> StringItems => _items.ConvertAll(item => item.Value);
+        
+        /// <summary>
+        /// Using ADD()/REMOVE() will not affect the dropdown. To change the items you need to use SetItems() method.
+        /// </summary>
+        public List<LocalizationString> Items => _items;
 
         #endregion
 
@@ -46,7 +50,7 @@ namespace LocalizationsTools_V2.Unity.Dropdown
             if (Application.isPlaying || !_dropdown) return;
             
             _dropdown.ClearOptions();
-            _dropdown.AddOptions(_items);
+            _dropdown.AddOptions(_items.ConvertAll(item => item.Value));
         }
 #endif
 
@@ -94,7 +98,7 @@ namespace LocalizationsTools_V2.Unity.Dropdown
         /// <param name="items"></param>
         public void SetItems(List<string> items)
         {
-            _items = items;
+            _items = items.ConvertAll(item => new LocalizationString(item));
             
             LoadItems();
             HandleOnLanguageSwitch(_currentLanguage);

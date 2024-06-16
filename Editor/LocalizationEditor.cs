@@ -3,11 +3,12 @@
 
 using System;
 using System.Linq;
+using Core.Scripts.Localizations;
 using Core.Scripts.Localizations.Config;
 using UnityEditor;
 using UnityEngine;
 
-namespace Core.Scripts.Localizations.Editor
+namespace LocalizationsTools_V2.Editor
 {
     public static class LocalizationEditor
     {

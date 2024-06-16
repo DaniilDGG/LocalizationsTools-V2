@@ -1,15 +1,15 @@
 //Copyright 2023 Daniil Glagolev
 //Licensed under the Apache License, Version 2.0
 
-using System;
 using System.Collections.Generic;
 using System.IO;
+using Core.Scripts.Localizations;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 using UnityEditor;
 using UnityEngine;
 
-namespace Core.Scripts.Localizations.Editor
+namespace LocalizationsTools_V2.Editor
 {
     public static class LocalizationXlsxReader
     {

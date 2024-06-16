@@ -2,10 +2,11 @@
 //Licensed under the Apache License, Version 2.0
 
 using System.Collections.Generic;
+using Core.Scripts.Localizations;
 using UnityEngine.Events;
 using UnityEngine.UIElements;
 
-namespace Core.Scripts.Localizations.Editor
+namespace LocalizationsTools_V2.Editor
 {
     public class XlsxImportWindow : EditorCustomWindow<XlsxImportWindow>
     {
