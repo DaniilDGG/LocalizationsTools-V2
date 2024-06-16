@@ -7,7 +7,7 @@ using Cysharp.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 
-namespace Core.Scripts.Localizations.Unity
+namespace LocalizationsTools_V2.Unity.Text
 {
     [RequireComponent(typeof(LocalizationInfo))]
     public sealed class TypingTMPTextLocalization : MonoBehaviour

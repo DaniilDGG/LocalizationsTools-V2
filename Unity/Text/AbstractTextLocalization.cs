@@ -2,7 +2,7 @@ using Core.Scripts.Localizations.Unity.Base;
 using TMPro;
 using UnityEngine;
 
-namespace Core.Scripts.Localizations.Unity
+namespace LocalizationsTools_V2.Unity.Text
 {
     public abstract class AbstractTextLocalization : MonoBehaviour
     {
