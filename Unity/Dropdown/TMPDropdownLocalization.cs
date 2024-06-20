@@ -97,13 +97,13 @@ namespace LocalizationsTools_V2.Unity.Dropdown
 
                 if (localizationData?.Data == null)
                 {
-                    localizations.Add("localization is null");
+                    localizations.Add("localization is null3");
                     continue;
                 }
                 
                 var languageData = localizationData.Data.Find(data => data.Language == _currentLanguage);
 
-                localizations.Add(languageData.Language != null ? languageData.Localization : "localization is null");
+                localizations.Add(languageData.Language != null ? languageData.Localization : "localization is null5");
             }
 
             for (var index = 0; index < localizations.Count; index++)
