@@ -73,7 +73,7 @@ namespace LocalizationsTools_V2.Unity.Dropdown
             
             for (var index = 0; index < _items.Count; index++)
             {
-                if (_items[index] != CustomCode) continue;
+                if (_items[index] == CustomCode) continue;
                 
                 _localizationDates[index] = LocalizationController.GetLocalization(_items[index]);
             }
