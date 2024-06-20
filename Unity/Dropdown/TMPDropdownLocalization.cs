@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Core.Scripts.Localizations;
 using TMPro;
@@ -62,6 +63,12 @@ namespace LocalizationsTools_V2.Unity.Dropdown
 
         private void LoadItems()
         {
+            if (_items.Count == 0)
+            {
+                _localizationDates = Array.Empty<LocalizationData>();
+                return;
+            }
+            
             _localizationDates = new LocalizationData[_items.Count - 1];
             
             for (var index = 0; index < _items.Count; index++)
@@ -78,11 +85,19 @@ namespace LocalizationsTools_V2.Unity.Dropdown
             
             var localizations = new List<string>();
 
-            foreach (var localizationData in _localizationDates)
+            for (var index = 0; index < _localizationDates.Length; index++)
             {
+                var localizationData = _localizationDates[index];
+
+                if (localizationData?.Data == null)
+                {
+                    localizations.Add("localization is null");
+                    continue;
+                }
+                
                 var languageData = localizationData.Data.Find(data => data.Language == _currentLanguage);
 
-                localizations.Add(languageData.Localization);
+                localizations.Add(languageData.Language != null ? languageData.Localization : "localization is null");
             }
 
             for (var index = 0; index < localizations.Count; index++)
