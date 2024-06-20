@@ -69,7 +69,7 @@ namespace LocalizationsTools_V2.Unity.Dropdown
                 return;
             }
             
-            _localizationDates = new LocalizationData[_items.Count - 1];
+            _localizationDates = new LocalizationData[_items.Count];
             
             for (var index = 0; index < _items.Count; index++)
             {
@@ -85,6 +85,12 @@ namespace LocalizationsTools_V2.Unity.Dropdown
             
             var localizations = new List<string>();
 
+            if (_dropdown.options.Count > _localizationDates.Length)
+            {
+                var excessCount = _dropdown.options.Count - _localizationDates.Length;
+                _dropdown.options.RemoveRange(_localizationDates.Length, excessCount);
+            }
+            
             for (var index = 0; index < _localizationDates.Length; index++)
             {
                 var localizationData = _localizationDates[index];
@@ -102,7 +108,7 @@ namespace LocalizationsTools_V2.Unity.Dropdown
 
             for (var index = 0; index < localizations.Count; index++)
             {
-                if (index < _dropdown.options.Count) _dropdown.AddOptions(new List<string>(1){localizations[index]});
+                if (index >= _dropdown.options.Count) _dropdown.AddOptions(new List<string>(1){localizations[index]});
                 else _dropdown.options[index].text = localizations[index];
             }
         }
