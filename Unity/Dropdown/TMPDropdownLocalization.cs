@@ -103,7 +103,7 @@ namespace LocalizationsTools_V2.Unity.Dropdown
                 
                 var indexData = localizationData.Data.FindIndex(data => data.Language == _currentLanguage);
 
-                localizations.Add(indexData != -1 ? localizationData.Data[indexData].Localization : "localization is null");
+                localizations.Add(localizationData.Data[indexData].Localization);
             }
 
             for (var index = 0; index < localizations.Count; index++)
