@@ -101,9 +101,9 @@ namespace LocalizationsTools_V2.Unity.Dropdown
                     continue;
                 }
                 
-                var indexData = localizationData.Data.FindIndex(data => data.Language == _currentLanguage);
+                var indexData = localizationData.Data.FindIndex(data => data.Language.LanguageCode == _currentLanguage);
 
-                localizations.Add(localizationData.Data[indexData].Localization);
+                localizations.Add(indexData != -1 ? localizationData.Data[indexData].Localization : "localization is null");
             }
 
             for (var index = 0; index < localizations.Count; index++)
