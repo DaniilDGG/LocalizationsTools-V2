@@ -3,6 +3,7 @@
 
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Core.Scripts.Localizations;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
@@ -42,7 +43,8 @@ namespace LocalizationsTools_V2.Editor
                 var row = sheet.GetRow(0);
                 var cell = row.Cells[index];
 
-                var language = new Language(cell.StringCellValue, "");
+                var find = LocalizationController.Languages.First(x => cell.StringCellValue == x.LanguageCode);
+                var language = new Language(cell.StringCellValue, find.LanguageName);
                 
                 languages.Add(language);
             }
