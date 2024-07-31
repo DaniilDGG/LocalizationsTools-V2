@@ -43,8 +43,8 @@ namespace LocalizationsTools_V2.Editor
                 var row = sheet.GetRow(0);
                 var cell = row.Cells[index];
 
-                var find = LocalizationController.Languages.First(x => cell.StringCellValue == x.LanguageCode);
-                var language = new Language(cell.StringCellValue, find.LanguageName);
+                var find = LocalizationController.Languages.FirstOrDefault(x => cell.StringCellValue == x.LanguageCode);
+                var language = new Language(cell.StringCellValue, (find == null ? $"{index}" : find.LanguageName));
                 
                 languages.Add(language);
             }
