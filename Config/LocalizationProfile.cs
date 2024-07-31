@@ -59,9 +59,15 @@ namespace Core.Scripts.Localizations.Config
         /// <param name="languages">New languages.</param>
         public void SetLanguages(List<Language> languages)
         {
-            _localization.SetLocalization(languages.ToArray());
+            SetLanguagesWithoutSave(languages);
             HandleSet();
         }
+
+        /// <summary>
+        /// Set language changes without save.
+        /// </summary>
+        /// <param name="languages">New languages.</param>
+        public void SetLanguagesWithoutSave(List<Language> languages) => _localization.SetLocalization(languages.ToArray());
 
         private void HandleSet()
         {

@@ -94,6 +94,7 @@ namespace LocalizationsTools_V2.Editor
             
             if (!parametersImport.ReplaceLocalizationInFile)
             {
+                LocalizationEditor.LocalizationProfile.SetLanguagesWithoutSave(languages);
                 LocalizationEditor.LocalizationProfile.SetLocalizations(localizations);
                 return;
             }
