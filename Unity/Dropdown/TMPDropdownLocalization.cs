@@ -111,6 +111,8 @@ namespace LocalizationsTools_V2.Unity.Dropdown
                 if (index >= _dropdown.options.Count) _dropdown.AddOptions(new List<string>(1){localizations[index]});
                 else _dropdown.options[index].text = localizations[index];
             }
+            
+            _dropdown.RefreshShownValue();
         }
 
         #endregion
