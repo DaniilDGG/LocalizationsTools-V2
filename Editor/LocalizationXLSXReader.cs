@@ -54,8 +54,8 @@ namespace LocalizationsTools_V2.Editor
             for (var index = 1; index < sheet.LastRowNum + 1; index++)
             {
                 var row = sheet.GetRow(index);
-
-                if (string.IsNullOrEmpty(row.Cells[0].StringCellValue)) continue;
+                
+                if (row.Cells.Count == 0 || string.IsNullOrEmpty(row.Cells[0].StringCellValue)) continue;
                 
                 var languageDates = new List<LanguageData>();
 
