@@ -43,7 +43,24 @@ namespace LocalizationsTools_V2.Editor
                 multiline = multiline,
             };
 
-            visualElement.Add(textElement);
+            if (multiline)
+            {
+                var scrollView = new ScrollView()
+                {
+                    style =
+                    {
+                        flexGrow = 1, 
+                        height = 200 
+                    }
+                };
+
+                scrollView.Add(textElement);
+                visualElement.Add(scrollView);
+            }
+            else
+            {
+                visualElement.Add(textElement);
+            }
 
             return textElement;
         }
