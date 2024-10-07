@@ -22,7 +22,7 @@ namespace LocalizationsTools_V2.Editor
         {
             LocalizationEditor.Init();
 
-            _filePath = EditorUtility.OpenFilePanel("Localization file", "Assets", "xslx");
+            _filePath = EditorUtility.OpenFilePanel("Localization file", "Assets", "xlsx");
             
             if (string.IsNullOrEmpty(_filePath))
             {

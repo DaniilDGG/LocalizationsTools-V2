@@ -21,7 +21,7 @@ namespace LocalizationsTools_V2.Editor
         {
             LocalizationEditor.Init();
             
-            _filePath = EditorUtility.SaveFilePanel("Localization file", "Assets", "localization.xlsx","xslx");
+            _filePath = EditorUtility.SaveFilePanel("Localization file", "Assets", "localization.xlsx","xlsx");
             
             if (string.IsNullOrEmpty(_filePath))
             {
