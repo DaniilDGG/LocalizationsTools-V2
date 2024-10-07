@@ -13,13 +13,22 @@ namespace LocalizationsTools_V2.Editor
 {
     public static class LocalizationXlsxWriter
     {
-        private static readonly string FilePath = Path.Combine(Application.dataPath, "localization.xlsx");
+        private static string _filePath = Path.Combine(Application.dataPath, "localization.xlsx");
         private const int WidthColumn = 64 * 256;
         
         [MenuItem("Localization/Export to XLSX")]
         private static void WriteLocalizationInFile()
         {
             LocalizationEditor.Init();
+            
+            _filePath = EditorUtility.SaveFilePanel("Localization file", "Assets", "localization.xlsx","xslx");
+            
+            if (string.IsNullOrEmpty(_filePath))
+            {
+                Debug.Log("File is null!");
+                return;
+            }
+            
             var languages = new List<Language>(LocalizationController.Languages);
             
             IWorkbook workbook = new XSSFWorkbook();
@@ -87,7 +96,7 @@ namespace LocalizationsTools_V2.Editor
                 Debug.Log($"index - {index + 1}, code - {localizationData.LocalizationCode}, localizations - {localizationData.Data.Count}");
             }
 
-            using var fileStream = new FileStream(FilePath, FileMode.Create);
+            using var fileStream = new FileStream(_filePath, FileMode.Create);
             
             workbook.Write(fileStream);
         }

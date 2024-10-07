@@ -14,15 +14,23 @@ namespace LocalizationsTools_V2.Editor
 {
     public static class LocalizationXlsxReader
     {
-        private static readonly string FilePath = Path.Combine(Application.dataPath, "localization.xlsx");
+        private static string _filePath = Path.Combine(Application.dataPath, "localization.xlsx");
         private static IWorkbook _workbook;
 
         [MenuItem("Localization/Import XLSX")]
         private static void ReadLocalizationInFile()
         {
             LocalizationEditor.Init();
+
+            _filePath = EditorUtility.OpenFilePanel("Localization file", "Assets", "xslx");
             
-            using (var fileStream = new FileStream(FilePath, FileMode.Open, FileAccess.Read))
+            if (string.IsNullOrEmpty(_filePath))
+            {
+                Debug.Log("File is null!");
+                return;
+            }
+            
+            using (var fileStream = new FileStream(_filePath, FileMode.Open, FileAccess.Read))
             {
                 _workbook = new XSSFWorkbook(fileStream);
             }
