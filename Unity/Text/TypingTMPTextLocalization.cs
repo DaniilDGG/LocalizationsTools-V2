@@ -6,6 +6,7 @@ using Core.Scripts.Localizations.Unity.Base;
 using Cysharp.Threading.Tasks;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace LocalizationsTools_V2.Unity.Text
 {
@@ -23,6 +24,19 @@ namespace LocalizationsTools_V2.Unity.Text
         
         private string _typingText;
         private bool _requiredFinish;
+
+        #region Propeties
+
+        public bool IsTyping => _typingText != _tmp.text;
+
+        #endregion
+
+        #region Events
+
+        public UnityAction OnStartTyping;
+        public UnityAction OnEndTyping;
+
+        #endregion
 
         #endregion
 
@@ -53,6 +67,8 @@ namespace LocalizationsTools_V2.Unity.Text
             var symbolsCount = 0;
             var typingText = "";
             
+            OnStartTyping?.Invoke();
+            
             while (typingText.Length < text.Length && text == _typingText && !_requiredFinish)
             {
                 typingText = text[..symbolsCount];
@@ -66,6 +82,8 @@ namespace LocalizationsTools_V2.Unity.Text
             if (_typingText == text) _tmp.text = text;
 
             _requiredFinish = false;
+            
+            OnEndTyping?.Invoke();
         }
 
         public void StopTyping() => _requiredFinish = true;
