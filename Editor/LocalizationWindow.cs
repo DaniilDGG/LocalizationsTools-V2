@@ -34,7 +34,15 @@ namespace LocalizationsTools_V2.Editor
             rootVisualElement.Add(Root);
 
             _visualElementCode = new VisualElement();
-            _visualElementLocalizations = new VisualElement();
+            _visualElementLocalizations = new ScrollView
+            {
+                style =
+                {
+                    flexGrow = 1, 
+                },
+                horizontalScrollerVisibility = ScrollerVisibility.Hidden,
+                verticalScrollerVisibility = ScrollerVisibility.Auto
+            };
             
             var save = new Button
             {
@@ -61,7 +69,9 @@ namespace LocalizationsTools_V2.Editor
 
             for (var index = 0; index < LocalizationController.Languages.Length; index++)
             {
-                _localizationFields.Add(CreateTextInput("", LocalizationController.Languages[index].LanguageCode, _visualElementLocalizations, true));
+                var input = CreateTextInput("", LocalizationController.Languages[index].LanguageCode, _visualElementLocalizations, true);
+                
+                _localizationFields.Add(input);
             }
             
             Root.Add(_visualElementCode);

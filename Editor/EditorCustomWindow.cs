@@ -45,14 +45,19 @@ namespace LocalizationsTools_V2.Editor
 
             if (multiline)
             {
-                var scrollView = new ScrollView()
+                var scrollView = new ScrollView
                 {
                     style =
                     {
                         flexGrow = 1, 
-                        height = 200 
-                    }
+                        maxHeight = 200,
+                        overflow = Overflow.Hidden
+                    },
+                    horizontalScrollerVisibility = ScrollerVisibility.Auto,
+                    verticalScrollerVisibility = ScrollerVisibility.Auto
                 };
+
+                textElement.style.whiteSpace = WhiteSpace.Normal;
 
                 scrollView.Add(textElement);
                 visualElement.Add(scrollView);
