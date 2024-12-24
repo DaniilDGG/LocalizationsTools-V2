@@ -29,7 +29,7 @@ namespace LocalizationsTools_V2.Unity.Text
         #region Propeties
 
         public bool IsTyping => !IsFull;
-        public bool IsFull => _typingText.Length == _symbolsCount - 1 && _typingText == _tmp.text;
+        public bool IsFull => _typingText.Length == _symbolsCount && _typingText == _tmp.text;
 
         #endregion
 
