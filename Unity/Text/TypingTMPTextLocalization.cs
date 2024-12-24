@@ -18,16 +18,24 @@ namespace LocalizationsTools_V2.Unity.Text
         [SerializeField] private TMP_Text _tmp;
         
         [Space(30f)]
-        [SerializeField, Range(0.01f, 1)] private float _charTypingTime = 0.16f;
+        [SerializeField, Range(MinimumCharTypingTime, MaximumCharTypingTime)] private float _charTypingTime = 0.16f;
         
         private LocalizationInfo _info;
         
         private string _typingText;
+        private string _currentTypingText;
         private bool _requiredFinish;
 
         #region Propeties
 
         public bool IsTyping => _typingText != _tmp.text;
+
+        #endregion
+
+        #region Constants
+
+        public const float MinimumCharTypingTime = 0.01f;
+        public const float MaximumCharTypingTime = 0.01f;
 
         #endregion
 
@@ -57,6 +65,27 @@ namespace LocalizationsTools_V2.Unity.Text
 
         #endregion
 
+        #region Public Members
+
+        public void SetCharTypingTime(float value, bool isRedraw = false)
+        {
+            value = value switch
+            {
+                > MaximumCharTypingTime => MaximumCharTypingTime,
+                < MinimumCharTypingTime => MinimumCharTypingTime,
+                _ => value
+            };
+
+            _charTypingTime = value;
+
+            if (!isRedraw) return;
+
+            if (IsTyping) _currentTypingText = "";
+            else Typing(_typingText);
+        }
+        
+        #endregion
+        
         private async void Typing(string text)
         {
             _typingText = text;
@@ -65,22 +94,23 @@ namespace LocalizationsTools_V2.Unity.Text
             if (string.IsNullOrEmpty(text)) return;
 
             var symbolsCount = 0;
-            var typingText = "";
+            _currentTypingText = "";
             
             OnStartTyping?.Invoke();
             
-            while (typingText.Length < text.Length && text == _typingText && !_requiredFinish)
+            while (_currentTypingText.Length < text.Length && text == _typingText && !_requiredFinish)
             {
-                typingText = text[..symbolsCount];
-                _tmp.text = typingText;
+                _currentTypingText = text[..symbolsCount];
+                _tmp.text = _currentTypingText;
 
                 await UniTask.Delay(TimeSpan.FromSeconds(_charTypingTime));
 
                 symbolsCount++;
             }
 
-            if (_typingText == text) _tmp.text = text;
-
+            if (_typingText != text) return;
+            
+            _tmp.text = text;
             _requiredFinish = false;
             
             OnEndTyping?.Invoke();
