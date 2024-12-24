@@ -112,6 +112,7 @@ namespace LocalizationsTools_V2.Unity.Text
             if (_typingText != text) return;
             
             _tmp.text = text;
+            _symbolsCount = text.Length;
             _requiredFinish = false;
             
             OnEndTyping?.Invoke();
