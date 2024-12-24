@@ -24,12 +24,14 @@ namespace LocalizationsTools_V2.Unity.Text
         
         private string _typingText;
         private int _symbolsCount;
+        
         private bool _requiredFinish;
+        private bool _isTyping;
 
         #region Propeties
 
-        public bool IsTyping => !IsFull;
-        public bool IsFull => _typingText.Length == _symbolsCount && _typingText == _tmp.text;
+        public bool IsTyping => _isTyping;
+        public bool IsFull => !_isTyping;
 
         #endregion
 
@@ -96,6 +98,7 @@ namespace LocalizationsTools_V2.Unity.Text
 
             _symbolsCount = 0;
             var typingText = "";
+            _isTyping = true;
             
             OnStartTyping?.Invoke();
             
@@ -113,7 +116,9 @@ namespace LocalizationsTools_V2.Unity.Text
             
             _tmp.text = text;
             _symbolsCount = text.Length;
+            
             _requiredFinish = false;
+            _isTyping = false;
             
             OnEndTyping?.Invoke();
         }
