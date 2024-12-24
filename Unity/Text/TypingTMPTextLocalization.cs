@@ -35,7 +35,7 @@ namespace LocalizationsTools_V2.Unity.Text
         #region Constants
 
         public const float MinimumCharTypingTime = 0.01f;
-        public const float MaximumCharTypingTime = 0.04f;
+        public const float MaximumCharTypingTime = 1f;
 
         #endregion
 
