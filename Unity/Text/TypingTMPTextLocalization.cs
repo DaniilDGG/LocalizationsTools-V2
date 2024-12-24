@@ -23,7 +23,7 @@ namespace LocalizationsTools_V2.Unity.Text
         private LocalizationInfo _info;
         
         private string _typingText;
-        private string _currentTypingText;
+        private int _symbolsCount;
         private bool _requiredFinish;
 
         #region Propeties
@@ -35,7 +35,7 @@ namespace LocalizationsTools_V2.Unity.Text
         #region Constants
 
         public const float MinimumCharTypingTime = 0.01f;
-        public const float MaximumCharTypingTime = 0.01f;
+        public const float MaximumCharTypingTime = 0.04f;
 
         #endregion
 
@@ -80,7 +80,7 @@ namespace LocalizationsTools_V2.Unity.Text
 
             if (!isRedraw) return;
 
-            if (IsTyping) _currentTypingText = "";
+            if (IsTyping) _symbolsCount = 0;
             else Typing(_typingText);
         }
         
@@ -93,19 +93,19 @@ namespace LocalizationsTools_V2.Unity.Text
 
             if (string.IsNullOrEmpty(text)) return;
 
-            var symbolsCount = 0;
-            _currentTypingText = "";
+            _symbolsCount = 0;
+            var typingText = "";
             
             OnStartTyping?.Invoke();
             
-            while (_currentTypingText.Length < text.Length && text == _typingText && !_requiredFinish)
+            while (typingText.Length < text.Length && text == _typingText && !_requiredFinish)
             {
-                _currentTypingText = text[..symbolsCount];
-                _tmp.text = _currentTypingText;
+                typingText = text[.._symbolsCount];
+                _tmp.text = typingText;
 
                 await UniTask.Delay(TimeSpan.FromSeconds(_charTypingTime));
 
-                symbolsCount++;
+                _symbolsCount++;
             }
 
             if (_typingText != text) return;
